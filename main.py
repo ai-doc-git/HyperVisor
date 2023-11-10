@@ -60,15 +60,17 @@ if st.button('Run Simulation', use_container_width=True):
         mape = mean_absolute_percentage_error (train_y, pred)
         test_mape = mape * 100
         accuracy = 100 - test_mape
-        placeholder_metric.success("Accuracy : " + str(round(accuracy,2)) + " %")
+        placeholder_metric.info("Accuracy : " + str(round(accuracy,2)) + " %")
         tmp_result[param[0]] = [item]
         tmp_result['accuracy'] = accuracy
         result = result.append(tmp_result)
 
-        time.sleep(1)
+        time.sleep(0.5)
         if item < float(param[2])-1:
             placeholder.empty()
             placeholder_metric.empty()
 
 
     st.dataframe(result.set_index(param[0]),height=200,use_container_width=True)
+    best_result = result.sort_values(by='accuracy', ascending=False).head(1).values[0]
+    st.success("Best value for hyperparameter " + param[0] + " : " + str(best_result[0]) + " with Accuracy : " + str(round(best_result[1],2)) + " %")
