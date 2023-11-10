@@ -12,8 +12,7 @@ requests
 scikit-learn==1.2.0
 scipy==1.9.3
 statsmodels==0.13.5
-streamlit==1.17.0
-streamlit-lottie==0.0.3
+streamlit==1.28.0
 tinycss2
 urllib3
 xgboost==2.0.1
