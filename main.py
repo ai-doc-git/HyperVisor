@@ -65,7 +65,7 @@ if st.button('Run Simulation', use_container_width=True):
         tmp_result['accuracy'] = accuracy
         result = result.append(tmp_result)
 
-        time.sleep(0.5)
+        time.sleep(1)
         if item < float(param[2])-1:
             placeholder.empty()
             placeholder_metric.empty()
