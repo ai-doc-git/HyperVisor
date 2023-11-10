@@ -20,7 +20,6 @@ st.set_page_config(
 
 st.markdown("<h2 style='text-align: center; color: rgb(0, 0, 0);'> HYPER - VISOR </h2>", unsafe_allow_html=True)
 
-# col1, col2 = st.columns(2)
 uploaded_file = st.file_uploader("Upload data:")
 if uploaded_file is not None and 'my_data' not in st.session_state:
     df = pd.read_csv(uploaded_file)
@@ -34,7 +33,6 @@ if uploaded_file is not None and 'my_data' not in st.session_state:
 param = 0
 param_input = st.text_input("Enter hyperparameter: (example - n_estimators 1 10 1)")
 if st.button('Run Simulation', use_container_width=True):
-    print(param_input)
     param = param_input.split(' ')
     start = parameter_type[param[0]](param[1])
     stop = parameter_type[param[0]](param[2])
