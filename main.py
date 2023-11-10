@@ -46,19 +46,22 @@ if st.button('Run Simulation', use_container_width=True):
         tmp_result = pd.DataFrame()
         placeholder = st.empty()
         placeholder_metric = st.empty()
+        
         df = st.session_state['my_data']
         model = XGBRegressor(**{param[0]:item})
+        
         train_x = df.drop(['data'], axis=1)
         train_y = df.data
         model.fit(train_x, train_y)
+        
         pred = model.predict(train_x)
         df['pred'] = pred
+        
         display_data = df[['data', 'pred']]
         placeholder.line_chart(display_data)
         mape = mean_absolute_percentage_error (train_y, pred)
         test_mape = mape * 100
         accuracy = 100 - test_mape
-        # placeholder_metric.metric("Accuracy", round(accuracy,2))
         placeholder_metric.success("Accuracy : " + str(round(accuracy,2)) + " %")
         tmp_result[param[0]] = [item]
         tmp_result['accuracy'] = accuracy
